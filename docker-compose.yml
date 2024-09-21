@@ -1,30 +1,42 @@
 version: '3.8'
-services:
-  # PostgreSQL Database
-  db:
-    image: postgres:latest
-    environment:
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: secretpassword
-      POSTGRES_DB: PhoneBookDb
-    ports:
-      - "5432:5432"
-    volumes:
-      - postgres-data:/var/lib/postgresql/data
 
-  # .NET Core Application
+services:
   phonebookapi:
     image: ${DOCKER_REGISTRY-}phonebookapi
     build:
       context: .
-      dockerfile: Dockerfile
+      dockerfile: PhoneBookAPI/Dockerfile
     ports:
       - "5000:80"
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
-      - ConnectionStrings__PostgreSQL=Host=localhost;Port=5432;Database=PhoneBookDb;Username=postgres;Password=secretpassword;
+      - ASPNETCORE_URLS=http://+:80
+      - ConnectionStrings__PostgreSQL=Host=postgres_db;Port=5432;Database=PhoneBookDb;Username=postgres;Password=secretpassword;
+      - RedisCacheSettings__ConnectionString=redis_cache:6379
     depends_on:
-      - db
+      - postgres_db
+      - redis_cache
+    networks:
+      - app-network
+
+  postgres_db:
+    image: postgres:latest
+    environment:
+      POSTGRES_DB: PhoneBookDb
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: secretpassword
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    networks:
+      - app-network
+
+  redis_cache:
+    image: redis:latest
+    container_name: redis_cache
+    ports:
+      - "6379:6379"
     networks:
       - app-network
 

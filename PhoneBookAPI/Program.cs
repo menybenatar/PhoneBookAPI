@@ -1,9 +1,11 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
 using PhoneBookAPI.Data;
+using PhoneBookAPI.Extensions;
 using PhoneBookAPI.Helpers; // Namespace where MappingProfile is located
 using PhoneBookAPI.Interfaces;
 using PhoneBookAPI.Services;
+using Serilog;
 
 namespace PhoneBookAPI
 {
@@ -17,6 +19,8 @@ namespace PhoneBookAPI
             // Configure DbContext to use PostgreSQL
             builder.Services.AddDbContext<AppDbContext>(options =>
                 options.UseNpgsql(builder.Configuration.GetConnectionString("PostgreSQL")));
+            builder.Services.AddStackExchangeRedisCache(option =>
+            option.Configuration = builder.Configuration.GetConnectionString("Redis"));
 
             builder.Services.AddScoped<IContactService, ContactService>();
             builder.Services.AddControllers();
@@ -24,6 +28,19 @@ namespace PhoneBookAPI
 
             // Add AutoMapper
             builder.Services.AddAutoMapper(typeof(MappingProfile));
+
+
+            // Add services to the container.
+            builder.WebHost.ConfigureKestrel(serverOptions =>
+            {
+                // Run only HTTP for non-development environments (like Docker)
+                serverOptions.ListenAnyIP(80); // Listen on port 80
+            });
+            // Configure Serilog for file logging
+            Log.Logger = new LoggerConfiguration()
+                .WriteTo.File("Logs/log-.txt", rollingInterval: RollingInterval.Day)
+                .CreateLogger();
+            builder.Host.UseSerilog(); // Use Serilog for logging
 
             // Add Swagger
             builder.Services.AddSwaggerGen(c =>
@@ -42,6 +59,8 @@ namespace PhoneBookAPI
                     c.SwaggerEndpoint("/swagger/v1/swagger.json", "PhoneBookAPI v1");
                     c.RoutePrefix = string.Empty; // Sets Swagger at the app's root (http://localhost:<port>/)
                 });
+                app.ApplyMigrations();
+
             }
 
 
