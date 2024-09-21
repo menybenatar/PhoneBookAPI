@@ -1,13 +1,14 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace PhoneBookAPI.Models
+namespace PhoneBookAPI.Data
 {
-    public class ContactModel
+    public class ContactEntity
     {
+        [Key]
         public int Id { get; set; }
 
-        [Required] 
-        [MaxLength(50)] 
+        [Required]
+        [MaxLength(50)]
         public string FirstName { get; set; }
 
         [Required]

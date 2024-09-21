@@ -5,7 +5,7 @@ namespace PhoneBookAPI.Data
 {
     public class AppDbContext : DbContext
     {
-        public DbSet<ContactModel> Contacts { get; set; }
+        public DbSet<ContactEntity> Contacts { get; set; }
 
         public AppDbContext(DbContextOptions<AppDbContext> options) : base(options)
         {
@@ -13,7 +13,7 @@ namespace PhoneBookAPI.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<ContactModel>().HasKey(c => c.Id);
+            modelBuilder.Entity<ContactEntity>().HasKey(c => c.Id);
             base.OnModelCreating(modelBuilder);
         }
     }
