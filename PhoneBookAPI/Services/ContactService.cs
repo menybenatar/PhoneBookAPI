@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using AutoMapper;
+using Microsoft.EntityFrameworkCore;
 using PhoneBookAPI.Data;
 using PhoneBookAPI.Interfaces;
 using PhoneBookAPI.Models;
@@ -8,15 +9,19 @@ namespace PhoneBookAPI.Services
     public class ContactService : IContactService
     {
         private readonly AppDbContext _context;
+        private readonly IMapper _mapper;
 
-        public ContactService(AppDbContext context)
+        public ContactService(AppDbContext context, IMapper mapper)
         {
             _context = context;
+            _mapper = mapper;
         }
 
-        public Task AddContact(ContactModel contact)
+        public async Task AddContact(ContactModel contactModel)
         {
-            throw new NotImplementedException();
+            var contactEntity = _mapper.Map<ContactEntity>(contactModel);
+            _context.Contacts.Add(contactEntity);
+            await _context.SaveChangesAsync();
         }
 
         public Task DeleteContact(int id)
@@ -31,10 +36,7 @@ namespace PhoneBookAPI.Services
 
         public async Task<IEnumerable<ContactModel>> GetContacts(int pageNumber, int pageSize)
         {
-            return await _context.Contacts
-                .Skip((pageNumber - 1) * pageSize)
-                .Take(pageSize)
-                .ToListAsync();
+            throw new NotImplementedException();
         }
 
         public Task<IEnumerable<ContactModel>> SearchContacts(string query)

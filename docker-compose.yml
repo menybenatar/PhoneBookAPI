@@ -5,7 +5,7 @@ services:
     image: postgres:latest
     environment:
       POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: YourPassword
+      POSTGRES_PASSWORD: secretpassword
       POSTGRES_DB: PhoneBookDb
     ports:
       - "5432:5432"
@@ -22,7 +22,7 @@ services:
       - "5000:80"
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
-      - ConnectionStrings__PostgreSQL=Server=db;Port=5432;Database=PhoneBookDb;User Id=postgres;Password=YourPassword;
+      - ConnectionStrings__PostgreSQL=Host=localhost;Port=5432;Database=PhoneBookDb;Username=postgres;Password=secretpassword;
     depends_on:
       - db
     networks:

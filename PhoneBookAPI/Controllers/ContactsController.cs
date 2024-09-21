@@ -47,8 +47,8 @@ namespace PhoneBookAPI.Controllers
             }
         }
 
-        // POST: api/contacts
-        [HttpPost]
+        // POST: api/contacts/AddContact
+        [HttpPost("AddContact")]
         public async Task<IActionResult> AddContact([FromBody] ContactModel contact)
         {
             try

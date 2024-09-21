@@ -1,8 +1,9 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
+using PhoneBookAPI.Data;
+using PhoneBookAPI.Helpers; // Namespace where MappingProfile is located
 using PhoneBookAPI.Interfaces;
 using PhoneBookAPI.Services;
-using System;
 
 namespace PhoneBookAPI
 {
@@ -14,12 +15,15 @@ namespace PhoneBookAPI
 
             // Add services to the container.
             // Configure DbContext to use PostgreSQL
-            builder.Services.AddDbContext<DbContext>(options =>
+            builder.Services.AddDbContext<AppDbContext>(options =>
                 options.UseNpgsql(builder.Configuration.GetConnectionString("PostgreSQL")));
 
             builder.Services.AddScoped<IContactService, ContactService>();
             builder.Services.AddControllers();
             builder.Services.AddEndpointsApiExplorer();
+
+            // Add AutoMapper
+            builder.Services.AddAutoMapper(typeof(MappingProfile));
 
             // Add Swagger
             builder.Services.AddSwaggerGen(c =>
@@ -36,6 +40,7 @@ namespace PhoneBookAPI
                 app.UseSwaggerUI(c =>
                 {
                     c.SwaggerEndpoint("/swagger/v1/swagger.json", "PhoneBookAPI v1");
+                    c.RoutePrefix = string.Empty; // Sets Swagger at the app's root (http://localhost:<port>/)
                 });
             }
 
