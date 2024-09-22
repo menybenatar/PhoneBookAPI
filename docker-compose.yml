@@ -3,6 +3,7 @@ version: '3.8'
 services:
   phonebookapi:
     image: ${DOCKER_REGISTRY-}phonebookapi
+    container_name: phonebookapi
     build:
       context: .
       dockerfile: PhoneBookAPI/Dockerfile
@@ -21,6 +22,7 @@ services:
 
   postgres_db:
     image: postgres:latest
+    container_name: postgres_db
     environment:
       POSTGRES_DB: PhoneBookDb
       POSTGRES_USER: postgres
