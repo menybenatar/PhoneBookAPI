@@ -44,7 +44,7 @@ The PhoneBook API is a RESTful service for managing contacts. The API supports c
 
 1. **Clone the repository:**
     ```bash
-    git clone https://github.com/your-repo/PhoneBookAPI.git
+    git clone https://github.com/menybenatar/PhoneBookAPI.git
     cd PhoneBookAPI
     ```
 
@@ -55,19 +55,14 @@ The PhoneBook API is a RESTful service for managing contacts. The API supports c
 
 3. **Access the API:**
     - The API will be available at: `http://localhost:5000`
-    - Swagger documentation is available at: `http://localhost:5000/swagger`
+    - Swagger documentation is available at: `http://localhost:5000/index.html`
 
 ### Running Unit Tests
 
 The unit tests for the project are written using xUnit. You can run the tests using the following command:
 
-1. **In Visual Studio:**
-    - Right-click on the test project `PhoneBookAPI.Tests` and select `Run Tests`.
-
-2. **Or via CLI:**
-    ```bash
-    dotnet test
-    ```
+ **In Visual Studio:**
+   - Right-click on the test project `PhoneBookAPI.Tests` and select `Run Tests`.
 
 ## API Documentation
 
@@ -79,46 +74,18 @@ The API provides a set of endpoints to manage contacts. Here's a brief overview 
    - Retrieves a list of all contacts.
    - Supports pagination via query parameters: `pageNumber` and `pageSize`.
 
-2. **GET /api/contacts/{id}**
-   - Retrieves a single contact by its ID.
-
-3. **POST /api/contacts**
+2. **POST /api/contacts/AddContact**
    - Creates a new contact.
 
-4. **PUT /api/contacts/{id}**
+3. **PUT /api/contacts/EditContact**
    - Updates an existing contact.
 
-5. **DELETE /api/contacts/{id}**
+4. **DELETE /api/contacts/DeleteContact{id}**
    - Deletes a contact by its ID.
 
-6. **GET /api/contacts/search?query={searchTerm}**
+5. **GET /api/contacts/search?query={searchTerm}**
    - Searches for contacts by first name, last name, phone number, or address.
 
-### Swagger
 
-To explore the API in more detail, Swagger UI is available.
-
-Once you have the server running, go to:
-- **Swagger UI**: [http://localhost:5000/swagger](http://localhost:5000/swagger)
-  
-You can see all the available endpoints, input parameters, and make test API calls from there.
-
-## Development
-
-If you wish to run the application without Docker or for development:
-
-1. **Install .NET SDK**: Make sure you have .NET SDK installed from [here](https://dotnet.microsoft.com/download).
-2. **Run the application:**
-    ```bash
-    dotnet run --project PhoneBookAPI
-    ```
-
-## Contributing
-
-Feel free to submit issues and feature requests. If you'd like to contribute, please fork the repository and submit a pull request.
-
-## License
-
-This project is open-source and available under the [MIT License](LICENSE).
 
 
