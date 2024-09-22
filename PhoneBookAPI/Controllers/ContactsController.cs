@@ -17,7 +17,7 @@ namespace PhoneBookAPI.Controllers
             _logger = logger;
         }
 
-        // GET: api/contacts?pageNumber=1&pageSize=10
+        // GET: api/contacts/GetContacts?pageNumber=1&pageSize=10
         /// <summary>
         /// Retrieves a paginated list of contacts.
         /// </summary>
