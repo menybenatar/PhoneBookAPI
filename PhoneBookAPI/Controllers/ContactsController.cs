@@ -125,7 +125,7 @@ namespace PhoneBookAPI.Controllers
             }
         }
 
-        // DELETE: api/contacts/DeleteContact/5
+        // DELETE: api/contacts/DeleteContact
         [HttpDelete("DeleteContact/{id}")]
         public async Task<IActionResult> DeleteContact(int id)
         {

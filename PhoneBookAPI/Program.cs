@@ -36,11 +36,11 @@ namespace PhoneBookAPI
                 // Run only HTTP for non-development environments (like Docker)
                 serverOptions.ListenAnyIP(80); // Listen on port 80
             });
-            // Configure Serilog for file logging
+            // Using Serilog for daily rolling file logging in the "Logs" directory; with more time, I would have integrated Elasticsearch for advanced log indexing, searching, and real-time monitoring.
             Log.Logger = new LoggerConfiguration()
                 .WriteTo.File("Logs/log-.txt", rollingInterval: RollingInterval.Day)
                 .CreateLogger();
-            builder.Host.UseSerilog(); // Use Serilog for logging
+            builder.Host.UseSerilog(); 
 
             // Add Swagger
             builder.Services.AddSwaggerGen(c =>
