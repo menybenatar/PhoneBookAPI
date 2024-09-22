@@ -55,7 +55,7 @@ The API provides a set of endpoints to manage contacts. Here's a brief overview 
 
 ### Available Endpoints
 
-1. **GET /api/contacts**
+1. **GET /api/contacts?pageNumber=1&pageSize=10**
    - Retrieves a list of all contacts.
    - Supports pagination via query parameters: `pageNumber` and `pageSize`.
 
