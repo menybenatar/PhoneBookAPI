@@ -2,21 +2,6 @@
 
 A simple .NET 6.0-based phone book API for managing contacts, built with Docker, PostgreSQL, and Redis.
 
-## Table of Contents
-
-- [About](#about)
-- [Technologies](#technologies)
-- [Requirements](#requirements)
-- [Setup & Run](#setup--run)
-  - [With Docker Compose](#with-docker-compose)
-  - [Running Unit Tests](#running-unit-tests)
-- [API Documentation](#api-documentation)
-  - [Available Endpoints](#available-endpoints)
-  - [Swagger](#swagger)
-- [Development](#development)
-- [Contributing](#contributing)
-- [License](#license)
-
 ## About
 
 The PhoneBook API is a RESTful service for managing contacts. The API supports creating, updating, deleting, and searching contacts. It uses:
