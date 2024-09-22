@@ -5,9 +5,9 @@ VisualStudioVersion = 17.4.33110.190
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PhoneBookAPI", "PhoneBookAPI\PhoneBookAPI.csproj", "{FEDAB34A-5EFD-4C10-B2E9-35F5429E85AD}"
 EndProject
-Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{C9A036A8-EDC1-4552-89F2-B8A2D41E3741}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PhoneBookAPI.Tests", "PhoneBookAPI.Tests\PhoneBookAPI.Tests.csproj", "{E440C449-3548-4374-9FBD-EFE9BF4BCE5C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PhoneBookAPI.Tests", "PhoneBookAPI.Tests\PhoneBookAPI.Tests.csproj", "{E440C449-3548-4374-9FBD-EFE9BF4BCE5C}"
+Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{86C03E44-984E-4F49-9516-8C4A16C70D76}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -19,14 +19,14 @@ Global
 		{FEDAB34A-5EFD-4C10-B2E9-35F5429E85AD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FEDAB34A-5EFD-4C10-B2E9-35F5429E85AD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FEDAB34A-5EFD-4C10-B2E9-35F5429E85AD}.Release|Any CPU.Build.0 = Release|Any CPU
-		{C9A036A8-EDC1-4552-89F2-B8A2D41E3741}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{C9A036A8-EDC1-4552-89F2-B8A2D41E3741}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{C9A036A8-EDC1-4552-89F2-B8A2D41E3741}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{C9A036A8-EDC1-4552-89F2-B8A2D41E3741}.Release|Any CPU.Build.0 = Release|Any CPU
 		{E440C449-3548-4374-9FBD-EFE9BF4BCE5C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{E440C449-3548-4374-9FBD-EFE9BF4BCE5C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E440C449-3548-4374-9FBD-EFE9BF4BCE5C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E440C449-3548-4374-9FBD-EFE9BF4BCE5C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{86C03E44-984E-4F49-9516-8C4A16C70D76}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{86C03E44-984E-4F49-9516-8C4A16C70D76}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{86C03E44-984E-4F49-9516-8C4A16C70D76}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{86C03E44-984E-4F49-9516-8C4A16C70D76}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

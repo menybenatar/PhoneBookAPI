@@ -4,7 +4,7 @@
     <ProjectVersion>2.1</ProjectVersion>
     <DockerTargetOS>Linux</DockerTargetOS>
     <DockerPublishLocally>False</DockerPublishLocally>
-    <ProjectGuid>c9a036a8-edc1-4552-89f2-b8a2d41e3741</ProjectGuid>
+    <ProjectGuid>86c03e44-984e-4f49-9516-8c4a16c70d76</ProjectGuid>
     <DockerLaunchAction>LaunchBrowser</DockerLaunchAction>
     <DockerServiceUrl>{Scheme}://localhost:{ServicePort}</DockerServiceUrl>
     <DockerServiceName>phonebookapi</DockerServiceName>
