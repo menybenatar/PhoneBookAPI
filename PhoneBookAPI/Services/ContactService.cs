@@ -115,18 +115,16 @@ namespace PhoneBookAPI.Services
         {
             try
             {
-                // Try to get contact from cache or database
-                var existingContact = await GetContactFromCacheOrDb(contact.Id);
+                var existingContact = await _context.Contacts.FindAsync(contact.Id);
                 if (existingContact == null)
                 {
                     throw new KeyNotFoundException($"Contact with ID {contact.Id} not found.");
                 }
 
-                // Update the contact
                 _mapper.Map(contact, existingContact);
-                await _context.SaveChangesAsync();
+                await _context.SaveChangesAsync();  
 
-                // Update the cache after saving
+                // After the update is successful, update the cache
                 await SetContactToCache(existingContact);
             }
             catch (KeyNotFoundException)
@@ -140,7 +138,32 @@ namespace PhoneBookAPI.Services
             }
         }
 
-        private async Task<ContactEntity> GetContactFromCacheOrDb(int contactId)
+        public async Task<ContactModel> GetContactById(int id)
+        {
+            try
+            {
+                // Try to get the contact from the cache or DB
+                var contactEntity = await GetContactFromCacheOrDb(id);
+                if (contactEntity == null)
+                {
+                    throw new KeyNotFoundException($"Contact with ID {id} not found.");
+                }
+
+                // Map the entity to the model
+                var contactModel = _mapper.Map<ContactModel>(contactEntity);
+                return contactModel;
+            }
+            catch (KeyNotFoundException)
+            {
+                throw;
+            }
+            catch (Exception ex)
+            {
+                string errorStr = $"An error occurred while retrieving the contact with ID {id}.";
+                throw new Exception(errorStr, ex);
+            }
+        }
+        private async Task<ContactEntity?> GetContactFromCacheOrDb(int contactId)
         {
             var cacheKey = GetCacheKey(contactId);
 

@@ -3,8 +3,13 @@
     "Docker Compose": {
       "commandName": "DockerCompose",
       "commandVersion": "1.0",
+      "composeLaunchAction": "LaunchBrowser",
+      "composeLaunchServiceName": "phonebookapi",
+      "composeLaunchUrl": "{Scheme}://localhost:{ServicePort}",
       "serviceActions": {
-        "phonebookapi": "StartDebugging"
+        "phonebookapi": "StartDebugging",
+        "postgres_db": "StartWithoutDebugging",
+        "redis_cache": "StartWithoutDebugging"
       }
     }
   }

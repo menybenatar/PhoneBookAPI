@@ -4,6 +4,7 @@ namespace PhoneBookAPI.Interfaces
 {
     public interface IContactService
     {
+        Task<ContactModel> GetContactById(int id);
         Task<IEnumerable<ContactModel>> GetContacts(int pageNumber, int pageSize);
         Task<IEnumerable<ContactModel>> SearchContacts(string query);
         Task<int> AddContact(ContactModel contactModel);

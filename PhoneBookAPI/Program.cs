@@ -21,7 +21,17 @@ namespace PhoneBookAPI
                 options.UseNpgsql(builder.Configuration.GetConnectionString("PostgreSQL")));
             builder.Services.AddStackExchangeRedisCache(option =>
             option.Configuration = builder.Configuration.GetConnectionString("Redis"));
-
+            // Add services to the container.
+            builder.Services.AddCors(options =>
+            {
+                options.AddPolicy("AllowAllOrigins",
+                    builder =>
+                    {
+                        builder.AllowAnyOrigin()
+                               .AllowAnyMethod()
+                               .AllowAnyHeader();
+                    });
+            });
             builder.Services.AddScoped<IContactService, ContactService>();
             builder.Services.AddControllers();
             builder.Services.AddEndpointsApiExplorer();
@@ -63,6 +73,8 @@ namespace PhoneBookAPI
 
             }
 
+            // Use CORS globally
+            app.UseCors("AllowAllOrigins");
 
             app.UseHttpsRedirection();
 

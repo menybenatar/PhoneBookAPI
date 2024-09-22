@@ -28,7 +28,7 @@ namespace PhoneBookAPI.Controllers
         /// If the client requests more than 10, the page size is capped at 10.
         /// </param>
         /// <returns>A paginated list of contacts with a maximum of 10 per page.</returns>
-        [HttpGet]
+        [HttpGet("GetContacts")]
         public async Task<IActionResult> GetContacts([FromQuery] int pageNumber = 1, [FromQuery] int pageSize = 10)
         {
             try
@@ -47,7 +47,26 @@ namespace PhoneBookAPI.Controllers
                 return StatusCode(500, new { message = "An error occurred while retrieving contacts.", error = ex.Message });
             }
         }
-
+        // GET: api/contacts/GetContactById?id
+        [HttpGet("GetContactById")]
+        public async Task<IActionResult> GetContactById(int id)
+        {
+            try
+            {
+                var contact = await _contactService.GetContactById(id);
+                return Ok(contact);
+            }
+            catch (KeyNotFoundException ex)
+            {
+                _logger.LogError(ex, ex.Message);
+                return NotFound(new { message = $"Contact with ID {id} not found." });
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, ex.Message);
+                return StatusCode(500, new { message = "An error occurred while retrieving the contact.", error = ex.Message });
+            }
+        }
         // GET: api/contacts/SearchContacts?query=John
         [HttpGet("SearchContacts")]
         public async Task<IActionResult> SearchContacts([FromQuery] string query)
