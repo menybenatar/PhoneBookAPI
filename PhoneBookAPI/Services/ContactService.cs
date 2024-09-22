@@ -41,14 +41,12 @@ namespace PhoneBookAPI.Services
         {
             try
             {
-                // Try to get contact from the database
                 var contactEntity = await _context.Contacts.FindAsync(id); ;
                 if (contactEntity == null)
                 {
                     throw new KeyNotFoundException($"Contact with ID {id} not found.");
                 }
 
-                // Remove the contact from the database
                 _context.Contacts.Remove(contactEntity);
                 await _context.SaveChangesAsync();
 

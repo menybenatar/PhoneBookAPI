@@ -1,5 +1,4 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging; // Add this for logging
 using PhoneBookAPI.Interfaces;
 using PhoneBookAPI.Models;
 

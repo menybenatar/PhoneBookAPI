@@ -19,7 +19,7 @@ namespace PhoneBookAPI.Data
         [Phone]
         public string PhoneNumber { get; set; }
 
-        [MaxLength(100)] // Limits the Address length to 100 characters
+        [MaxLength(100)] 
         public string? Address { get; set; }
     }
 }
